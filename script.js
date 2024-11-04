@@ -1,15 +1,24 @@
-function btnclick(val) {
-    document.getElementById("screen").value += val;
-    console.log(val)
+let currentInput = "";
+
+function btnclick(value) {
+    currentInput += value;
+    updateScreen();
 }
 
 function clearf() {
-    document.getElementById("screen").value = ""
+    currentInput = "";
+    updateScreen();
 }
 
 function equalclick() {
-    var text = document.getElementById("screen").value
-    var result = eval(text)
-    document.getElementById("screen").value = result
+    try {
+        currentInput = eval(currentInput).toString();
+    } catch (e) {
+        currentInput = "Error";
+    }
+    updateScreen();
+}
 
+function updateScreen() {
+    document.getElementById("screen").value = currentInput;
 }
